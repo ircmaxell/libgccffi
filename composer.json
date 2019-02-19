@@ -9,13 +9,16 @@
         }
     ],
     "require": {
-        "ircmaxell/ffime": "dev-master"
+        "ircmaxell/ffime": "master@dev"
     },
     "require-dev": {
     },
     "autoload": {
         "psr-4": {
             "libgccjit\\": "lib/"
-        }
+        },
+        "files": [
+            "lib/functions.php"
+        ]
     }
 }

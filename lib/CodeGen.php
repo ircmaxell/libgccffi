@@ -25,7 +25,7 @@ class CodeGen {
         }
         $code = '<?php declare(strict_types=1);
 
-function getFFI(): \FFIMe\FFIMe {
+function __gcc_jit_getFFI(): \FFIMe\FFIMe {
     static $ffi = null;
     if (!$ffi) {
         $ffi = (new \FFIMe\FFIMe(\'/usr/lib/x86_64-linux-gnu/libgccjit.so.0\'))
@@ -33,6 +33,16 @@ function getFFI(): \FFIMe\FFIMe {
           ->build();
     }
     return $ffi;
+}
+
+function __gcc_jit_getCallable(string $type, void_ptr $void): callable {
+    $cb = __gcc_jit_getFFI()->new($type);
+    \FFI::memcpy(
+        \FFI::addr($cb), 
+        \FFI::addr($void->getData()), 
+        \FFI::sizeof($cb)
+    );
+    return $cb;
 }
 
 ';
@@ -246,23 +256,23 @@ class ' . $type->name . ' {
         return $this->data;
     }
     public function castTo(string $type): \FFI\CData {
-        return getFFI()->cast($type, $this->data);
+        return __gcc_jit_getFFI()->cast($type, $this->data);
     }
     public static function new(): self {
-        return new self(getFFII()->new(self::getType()));
+        return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
     public static function castFrom(\FFI\CData $data): self {
-        return new self(getFFI()->cast(self::getType(), $data));
+        return new self(__gcc_jit_getFFI()->cast(self::getType(), $data));
     }
     public static function getType(): \FFI\CType {
-        return getFFI()->type(\'' . $type->type . '\');
+        return __gcc_jit_getFFI()->type(\'' . $type->type . '\');
     }
 ';
             if (strpos($type->type, '**') !== false) {
                 // array methods:
                 $code .= '
     public static function fromArray('. $type->child->name .' ...$data): self {
-        $ffi = getFFI();
+        $ffi = __gcc_jit_getFFI();
         $cData = $ffi->new(\'' . $type->child->type . '[\' . count($data) . \']\');
         foreach ($data as $key => $raw) {
             $cData[$key] = ' . ($type->child->isNative() ? '$raw' : '$raw->getData()') . ';
@@ -316,7 +326,7 @@ $code .= '
             if (!is_null($type)) {
                 $code .= 'return new ' . $type->name . '(';
             }
-            $code .= 'getFFI()->' . $function->name . '(' . $callBody . ')';
+            $code .= '__gcc_jit_getFFI()->' . $function->name . '(' . $callBody . ')';
             if (!is_null($type)) {
                 $code .= ')';
             }

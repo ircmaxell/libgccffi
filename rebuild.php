@@ -8,4 +8,4 @@ $code = $codegen->generate();
 
 file_put_contents(__DIR__ . '/lib/functions.php', $code);
 
-echo "Done";
+echo "Done\n";
