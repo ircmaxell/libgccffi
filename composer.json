@@ -9,6 +9,7 @@
         }
     ],
     "require": {
+        "ircmaxell/ffime": "dev-master"
     },
     "require-dev": {
     },
