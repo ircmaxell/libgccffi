@@ -1,20 +1,43 @@
 
 
-# FFIMe
+# libgccjit
 
-This is a wrapper library for PHP 7.4's FFI extension.
+This is a wrapper library for libgccjit using 7.4's FFI.
 
-You provide it with a shared object, and one or more header files, and it automatically generates the C structures and function signatures for you (just like doing it in C would).
+Basically, it exposes a "nice" interface in PHP for building JITs with GCC.
 
-Eventually, this will be more structured to provide a "nicer" interface to use the FFI itself.
+Example (in C, from https://gcc.gnu.org/wiki/JIT):
 
-Usage:
-
-```php
-$libc = new FFIMe\FFIMe("/lib/x86_64-linux-gnu/libc.so.6");
-$libc->include("/usr/include/printf.h")->build();
-
-$libc->printf("test");
+```c
+gcc_jit_type *void_type = gcc_jit_context_get_type (ctxt, GCC_JIT_TYPE_VOID);
+gcc_jit_type *const_char_ptr_type = gcc_jit_context_get_type (ctxt, GCC_JIT_TYPE_CONST_CHAR_PTR);
+gcc_jit_param *param_name =
+  gcc_jit_context_new_param (ctxt, NULL, const_char_ptr_type, "name");
+gcc_jit_function *func =
+  gcc_jit_context_new_function (ctxt, NULL,
+                                GCC_JIT_FUNCTION_EXPORTED,
+                                void_type,
+                                "some_fn",
+                                1, &param_name,
+                                0);
 ```
 
-Note: This does not work yet, except for certain relatively simple header files (such as those used by libjit, libgccjit, etc). Much more support for operators is needed.
+Would become:
+
+```php
+$void_type = gcc_jit_context_get_type($ctxt, GCC_JIT_TYPE_VOID);
+$const_char_ptr_type = gcc_jit_context_get_type($ctxt, GCC_JIT_TYPE_CONST_CHAR_PTR);
+$param_name = gcc_jit_context_new_param($ctxt, null, $const_char_ptr_type, "name");
+$func = gcc_jit_context_new_function(
+    $ctxt, 
+    null,
+    GCC_JIT_FUNCTION_EXPORTED,
+    $void_type,
+    "some_fn",
+    1,
+    gcc_jit_param_ptr_ptr::fromArray($param_name),
+    0
+);
+```
+
+It aims to be a simple, and type safe implementation in PHP.
