@@ -1,0 +1,20 @@
+{
+    "name": "ircmaxell/libgccjit",
+    "description": "A wrapper for FFI with libgccjit",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anthony Ferrara",
+            "email": "ircmaxell@gmail.com"
+        }
+    ],
+    "require": {
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "libgccjit\\": "lib/"
+        }
+    }
+}
