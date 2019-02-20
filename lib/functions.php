@@ -1510,7 +1510,7 @@ function gcc_jit_context_new_rvalue_from_int(
 function gcc_jit_context_new_rvalue_from_long(
     ?gcc_jit_context_ptr $ctxt,
     ?gcc_jit_type_ptr $numeric_type,
-    long $value
+    int $value
 ): gcc_jit_rvalue_ptr {
     return new gcc_jit_rvalue_ptr(__gcc_jit_getFFI()->gcc_jit_context_new_rvalue_from_long(
         is_null($ctxt) ? null : $ctxt->getData(), 

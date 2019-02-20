@@ -127,6 +127,9 @@ function __gcc_jit_getCallable(string $type, void_ptr $void): callable {
             $candidate = $this->types[$i++];
             if ($candidate->type === $type) {
                 return $candidate;
+            } elseif ($candidate->name === $type) {
+                // used for mapping native types
+                return $candidate;
             }
         }
         return null;
@@ -343,6 +346,11 @@ class Type {
     public string $type;
     public ?Type $child;
     public function __construct(string $name, string $type, ?Type $child = null) {
+        switch ($type) {
+            case 'long':
+            case 'long long':
+                $name = 'int';
+        }
         $this->name = $name;
         $this->type = $type;
         $this->child = $child;
