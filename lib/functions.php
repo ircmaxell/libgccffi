@@ -101,6 +101,9 @@ class FILE {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(FILE $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -123,6 +126,9 @@ class gcc_jit_context {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_context $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -147,6 +153,9 @@ class gcc_jit_result {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_result $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -169,6 +178,9 @@ class gcc_jit_object {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_object $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -193,6 +205,9 @@ class gcc_jit_location {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_location $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -215,6 +230,9 @@ class gcc_jit_type {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_type $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -239,6 +257,9 @@ class gcc_jit_field {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_field $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -261,6 +282,9 @@ class gcc_jit_struct {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_struct $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -285,6 +309,9 @@ class gcc_jit_function {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_function $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -307,6 +334,9 @@ class gcc_jit_block {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_block $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -331,6 +361,9 @@ class gcc_jit_rvalue {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_rvalue $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -353,6 +386,9 @@ class gcc_jit_lvalue {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_lvalue $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -377,6 +413,9 @@ class gcc_jit_param {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_param $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -399,6 +438,9 @@ class gcc_jit_case {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_case $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -423,6 +465,9 @@ class gcc_jit_timer {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_timer $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -445,6 +490,9 @@ class gcc_jit_context_ptr {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_context_ptr $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -469,6 +517,9 @@ class gcc_jit_result_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_result_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -491,6 +542,9 @@ class FILE_ptr {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(FILE_ptr $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -515,6 +569,9 @@ class void_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(void_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -537,6 +594,9 @@ class gcc_jit_object_ptr {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_object_ptr $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -561,6 +621,9 @@ class gcc_jit_location_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_location_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -584,6 +647,9 @@ class gcc_jit_type_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_type_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -592,6 +658,13 @@ class gcc_jit_type_ptr {
     }
     public static function getType(): \FFI\CType {
         return __gcc_jit_getFFI()->type('gcc_jit_type*');
+    }
+
+    public function getPointer(): gcc_jit_type_ptr {
+        return gcc_jit_type_get_pointer($this);
+    }
+    public function getConst(): gcc_jit_type_ptr {
+        return gcc_jit_type_get_const($this);
     }
 
 }
@@ -606,6 +679,9 @@ class gcc_jit_field_ptr {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_field_ptr $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -630,6 +706,9 @@ class gcc_jit_struct_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_struct_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -653,6 +732,9 @@ class gcc_jit_field_ptr_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_field_ptr_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -663,11 +745,11 @@ class gcc_jit_field_ptr_ptr {
         return __gcc_jit_getFFI()->type('gcc_jit_field**');
     }
 
-    public static function fromArray(gcc_jit_field_ptr ...$data): self {
+    public static function fromArray(?gcc_jit_field_ptr ...$data): self {
         $ffi = __gcc_jit_getFFI();
         $cData = $ffi->new('gcc_jit_field*[' . count($data) . ']');
         foreach ($data as $key => $raw) {
-            $cData[$key] = $raw->getData();
+            $cData[$key] = is_null($raw) ? null : $raw->getData();
         }
         return new self($cData);
     }
@@ -685,6 +767,9 @@ class gcc_jit_type_ptr_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_type_ptr_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -695,11 +780,11 @@ class gcc_jit_type_ptr_ptr {
         return __gcc_jit_getFFI()->type('gcc_jit_type**');
     }
 
-    public static function fromArray(gcc_jit_type_ptr ...$data): self {
+    public static function fromArray(?gcc_jit_type_ptr ...$data): self {
         $ffi = __gcc_jit_getFFI();
         $cData = $ffi->new('gcc_jit_type*[' . count($data) . ']');
         foreach ($data as $key => $raw) {
-            $cData[$key] = $raw->getData();
+            $cData[$key] = is_null($raw) ? null : $raw->getData();
         }
         return new self($cData);
     }
@@ -717,6 +802,9 @@ class gcc_jit_param_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_param_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -725,6 +813,13 @@ class gcc_jit_param_ptr {
     }
     public static function getType(): \FFI\CType {
         return __gcc_jit_getFFI()->type('gcc_jit_param*');
+    }
+
+    public function asRValue(): gcc_jit_rvalue_ptr {
+        return gcc_jit_param_as_rvalue($this);
+    }
+    public function asLValue(): gcc_jit_lvalue_ptr {
+        return gcc_jit_param_as_lvalue($this);
     }
 
 }
@@ -740,6 +835,9 @@ class gcc_jit_lvalue_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_lvalue_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -748,6 +846,10 @@ class gcc_jit_lvalue_ptr {
     }
     public static function getType(): \FFI\CType {
         return __gcc_jit_getFFI()->type('gcc_jit_lvalue*');
+    }
+
+    public function asRValue(): gcc_jit_rvalue_ptr {
+        return gcc_jit_lvalue_as_rvalue($this);
     }
 
 }
@@ -762,6 +864,9 @@ class gcc_jit_rvalue_ptr {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_rvalue_ptr $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -786,6 +891,9 @@ class gcc_jit_function_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_function_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -809,6 +917,9 @@ class gcc_jit_param_ptr_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_param_ptr_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -819,11 +930,11 @@ class gcc_jit_param_ptr_ptr {
         return __gcc_jit_getFFI()->type('gcc_jit_param**');
     }
 
-    public static function fromArray(gcc_jit_param_ptr ...$data): self {
+    public static function fromArray(?gcc_jit_param_ptr ...$data): self {
         $ffi = __gcc_jit_getFFI();
         $cData = $ffi->new('gcc_jit_param*[' . count($data) . ']');
         foreach ($data as $key => $raw) {
-            $cData[$key] = $raw->getData();
+            $cData[$key] = is_null($raw) ? null : $raw->getData();
         }
         return new self($cData);
     }
@@ -840,6 +951,9 @@ class gcc_jit_block_ptr {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_block_ptr $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -864,6 +978,9 @@ class gcc_jit_rvalue_ptr_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_rvalue_ptr_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -874,11 +991,11 @@ class gcc_jit_rvalue_ptr_ptr {
         return __gcc_jit_getFFI()->type('gcc_jit_rvalue**');
     }
 
-    public static function fromArray(gcc_jit_rvalue_ptr ...$data): self {
+    public static function fromArray(?gcc_jit_rvalue_ptr ...$data): self {
         $ffi = __gcc_jit_getFFI();
         $cData = $ffi->new('gcc_jit_rvalue*[' . count($data) . ']');
         foreach ($data as $key => $raw) {
-            $cData[$key] = $raw->getData();
+            $cData[$key] = is_null($raw) ? null : $raw->getData();
         }
         return new self($cData);
     }
@@ -895,6 +1012,9 @@ class gcc_jit_case_ptr {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_case_ptr $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
@@ -919,6 +1039,9 @@ class gcc_jit_case_ptr_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(gcc_jit_case_ptr_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -929,11 +1052,11 @@ class gcc_jit_case_ptr_ptr {
         return __gcc_jit_getFFI()->type('gcc_jit_case**');
     }
 
-    public static function fromArray(gcc_jit_case_ptr ...$data): self {
+    public static function fromArray(?gcc_jit_case_ptr ...$data): self {
         $ffi = __gcc_jit_getFFI();
         $cData = $ffi->new('gcc_jit_case*[' . count($data) . ']');
         foreach ($data as $key => $raw) {
-            $cData[$key] = $raw->getData();
+            $cData[$key] = is_null($raw) ? null : $raw->getData();
         }
         return new self($cData);
     }
@@ -951,6 +1074,9 @@ class string_ptr {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(string_ptr $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -961,7 +1087,7 @@ class string_ptr {
         return __gcc_jit_getFFI()->type('char**');
     }
 
-    public static function fromArray(string ...$data): self {
+    public static function fromArray(?string ...$data): self {
         $ffi = __gcc_jit_getFFI();
         $cData = $ffi->new('char*[' . count($data) . ']');
         foreach ($data as $key => $raw) {
@@ -982,6 +1108,9 @@ class gcc_jit_timer_ptr {
     }
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
+    }
+    public function equals(gcc_jit_timer_ptr $other): bool {
+        return $this->data == $other->data;
     }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));

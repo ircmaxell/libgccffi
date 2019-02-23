@@ -261,6 +261,9 @@ class ' . $type->name . ' {
     public function castTo(string $type): \FFI\CData {
         return __gcc_jit_getFFI()->cast($type, $this->data);
     }
+    public function equals(' . $type->name .' $other): bool {
+        return $this->data == $other->data;
+    }
     public static function new(): self {
         return new self(__gcc_jit_getFFII()->new(self::getType()));
     }
@@ -271,14 +274,42 @@ class ' . $type->name . ' {
         return __gcc_jit_getFFI()->type(\'' . $type->type . '\');
     }
 ';
+            switch ($type->name) {
+                case 'gcc_jit_lvalue_ptr':
+                    $code .= '
+    public function asRValue(): gcc_jit_rvalue_ptr {
+        return gcc_jit_lvalue_as_rvalue($this);
+    }
+';
+                    break;
+                case 'gcc_jit_param_ptr':
+                    $code .= '
+    public function asRValue(): gcc_jit_rvalue_ptr {
+        return gcc_jit_param_as_rvalue($this);
+    }
+    public function asLValue(): gcc_jit_lvalue_ptr {
+        return gcc_jit_param_as_lvalue($this);
+    }
+';
+                    break;
+                case 'gcc_jit_type_ptr':
+                    $code .= '
+    public function getPointer(): gcc_jit_type_ptr {
+        return gcc_jit_type_get_pointer($this);
+    }
+    public function getConst(): gcc_jit_type_ptr {
+        return gcc_jit_type_get_const($this);
+    }
+';
+            }
             if (strpos($type->type, '**') !== false) {
                 // array methods:
                 $code .= '
-    public static function fromArray('. $type->child->name .' ...$data): self {
+    public static function fromArray(?'. $type->child->name .' ...$data): self {
         $ffi = __gcc_jit_getFFI();
         $cData = $ffi->new(\'' . $type->child->type . '[\' . count($data) . \']\');
         foreach ($data as $key => $raw) {
-            $cData[$key] = ' . ($type->child->isNative() ? '$raw' : '$raw->getData()') . ';
+            $cData[$key] = ' . ($type->child->isNative() ? '$raw' : 'is_null($raw) ? null : $raw->getData()') . ';
         }
         return new self($cData);
     }
