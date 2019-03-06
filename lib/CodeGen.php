@@ -381,6 +381,10 @@ class Type {
             case 'long':
             case 'long long':
                 $name = 'int';
+                break;
+            case 'double':
+                $name = 'float';
+                break;
         }
         $this->name = $name;
         $this->type = $type;

@@ -1668,7 +1668,7 @@ function gcc_jit_context_one(
 function gcc_jit_context_new_rvalue_from_double(
     ?gcc_jit_context_ptr $ctxt,
     ?gcc_jit_type_ptr $numeric_type,
-    double $value
+    float $value
 ): gcc_jit_rvalue_ptr {
     return new gcc_jit_rvalue_ptr(__gcc_jit_getFFI()->gcc_jit_context_new_rvalue_from_double(
         is_null($ctxt) ? null : $ctxt->getData(), 
